@@ -5,7 +5,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-import re
 
 def configurar_navegador():
     options = Options()
@@ -27,32 +26,25 @@ try:
     search_box.send_keys(medicamento)
     search_box.send_keys(Keys.ENTER)
     
-    time.sleep(10)  # Espera más tiempo para cargar
+    time.sleep(8)
     
-    # Buscar TODOS los elementos con texto
-    todos_elementos = driver.find_elements(By.XPATH, "//*[contains(text(), '$')]")
+    # Obtener TODAS las tarjetas de productos
+    productos = driver.find_elements(By.CSS_SELECTOR, 'ml-card-product')
     
-    if len(todos_elementos) > 0:
-        print(f"\n✓ Se encontraron {len(todos_elementos)} elementos con precios")
+    if len(productos) > 1:
+        # Seleccionar el SEGUNDO producto (índice 1)
+        producto = productos[1]
         
-        # Mostrar los primeros 3 productos con precio
-        for i, elemento in enumerate(todos_elementos[:3], 1):
-            try:
-                # Obtener el contenedor padre del producto
-                producto_container = elemento.find_element(By.XPATH, "./ancestor::article | ./ancestor::div[contains(@class, 'product')]")
-                
-                # Extraer todo el texto
-                texto_completo = producto_container.text
-                lineas = texto_completo.split('\n')
-                
-                print(f"\n--- Producto {i} ---")
-                for linea in lineas[:5]:  # Primeras 5 líneas
-                    if linea.strip():
-                        print(f"  {linea}")
-            except:
-                continue
+        # Obtener nombre del segundo producto
+        nombre = producto.find_element(By.CSS_SELECTOR, 'a[class*="font-open"] span.ng-star-inserted').text
+        
+        # Obtener precio del segundo producto
+        precio = producto.find_element(By.CSS_SELECTOR, 'span.font-bold.text-prices').text
+        
+        print(f"\n Producto: {nombre}")
+        print(f" Precio: {precio}")
     else:
-        print("\n No se encontraron productos")
+        print(f"\n Solo se encontró {len(productos)} producto(s)")
         
 except Exception as e:
     print(f"\n Error: {e}")
