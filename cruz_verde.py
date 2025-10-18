@@ -1,7 +1,4 @@
-"""
-Módulo de búsqueda para Cruz Verde
-Puede ejecutarse de forma independiente o ser importado
-"""
+
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By

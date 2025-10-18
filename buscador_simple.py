@@ -1,8 +1,3 @@
-"""
-Buscador Simple de Medicamentos
-Importa y ejecuta cada script individual de farmacia
-Ordena los resultados por precio de menor a mayor
-"""
 
 import importlib
 import sys

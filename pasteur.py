@@ -1,7 +1,3 @@
-"""
-Módulo de búsqueda para Farmacias Pasteur
-Puede ejecutarse de forma independiente o ser importado
-"""
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
