@@ -76,7 +76,7 @@ if __name__ == "__main__":
             for idx, item in enumerate(resultados, start=1):
                 print(f"{idx}. {item['marca']} — {item['nombre']} — {item['precio']}")
         else:
-            print("✗ No se encontraron resultados.")
+            print(" No se encontraron resultados.")
     finally:
         print("\nCerrando navegador...")
         time.sleep(2)

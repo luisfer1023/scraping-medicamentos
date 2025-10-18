@@ -32,7 +32,7 @@ def extraer_precio_numerico(texto_precio):
     except:
         return float('inf')
 
-def buscar_en_cafam(driver, medicamento):
+#def buscar_en_cafam(driver, medicamento):
     """
     Cafam no tiene funcion buscar, solo extrae de URL directa
     Retornamos None porque no podemos buscar sin URL especifica
@@ -63,16 +63,14 @@ def buscar_en_farmatodo(driver, medicamento):
         print(f"   Error en Farmatodo: {str(e)[:80]}")
         return None
 
-def buscar_en_colsubsidio(driver, medicamento):
+#def buscar_en_colsubsidio(driver, medicamento):
     """
     Colsubsidio esta vacio, retornamos None
     """
     print("   COLSUBSIDIO: Archivo vacio (no implementado)")
     return None
 
-# ============================================
 # PROGRAMA PRINCIPAL
-# ============================================
 
 print("\n" + "="*60)
 print("       BUSCADOR DE PRECIOS DE MEDICAMENTOS")
@@ -140,10 +138,10 @@ try:
             if farmacia['especial']:
                 if farmacia['funcion'] == 'buscar_en_farmatodo':
                     resultado = buscar_en_farmatodo(driver, medicamento)
-                elif farmacia['funcion'] == 'buscar_en_cafam':
-                    resultado = buscar_en_cafam(driver, medicamento)
-                elif farmacia['funcion'] == 'buscar_en_colsubsidio':
-                    resultado = buscar_en_colsubsidio(driver, medicamento)
+                #elif farmacia['funcion'] == 'buscar_en_cafam':
+                   # resultado = buscar_en_cafam(driver, medicamento)
+                #elif farmacia['funcion'] == 'buscar_en_colsubsidio':
+                    #resultado = buscar_en_colsubsidio(driver, medicamento)
             else:
                 # Importar el modulo dinamicamente
                 modulo = importlib.import_module(farmacia['modulo'])
@@ -178,9 +176,7 @@ finally:
     driver.quit()
     print("Navegador cerrado")
 
-# ============================================
 # PROCESAR Y MOSTRAR RESULTADOS
-# ============================================
 
 # Agregar precio numerico para ordenar
 for resultado in resultados:
@@ -220,9 +216,7 @@ if len(resultados) > 0:
     
     print("="*60 + "\n")
     
-    # ============================================
     # EXPORTAR RESULTADOS A ARCHIVO
-    # ============================================
     try:
         with open('resultados_medicamentos.txt', 'w', encoding='utf-8') as f:
             f.write("="*60 + "\n")

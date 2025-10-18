@@ -57,9 +57,7 @@ def buscar(driver, medicamento):
         print(f"Error en La Rebaja Virtual: {e}")
         return None
 
-# ============================================
 # EJECUCIÓN INDEPENDIENTE
-# ============================================
 if __name__ == "__main__":
     # Este bloque solo se ejecuta si corres: python la_rebaja.py
     # NO se ejecuta cuando lo importas desde buscador_simple.py
@@ -72,16 +70,16 @@ if __name__ == "__main__":
         resultado = buscar(driver, medicamento)
         
         if resultado:
-            print(f"\n✓ Producto: {resultado['nombre']}")
-            print(f"✓ Precio: {resultado['precio']}")
+            print(f"\n Producto: {resultado['nombre']}")
+            print(f" Precio: {resultado['precio']}")
         else:
-            print("\n✗ No se encontraron productos")
+            print("\n No se encontraron productos")
             
     except Exception as e:
-        print(f"\n✗ Error: {e}")
+        print(f"\n Error: {e}")
         
     finally:
         print("\nCerrando navegador...")
         time.sleep(2)
         driver.quit()
-        print("✓ Proceso finalizado")
+        print(" Proceso finalizado")

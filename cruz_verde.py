@@ -74,9 +74,8 @@ def buscar(driver, medicamento):
         print(f"Error en Cruz Verde: {e}")
         return None
 
-# ============================================
 # EJECUCIÓN INDEPENDIENTE
-# ============================================
+
 if __name__ == "__main__":
     medicamento = input("¿Qué medicamento buscas?: ")
     driver = configurar_navegador()
